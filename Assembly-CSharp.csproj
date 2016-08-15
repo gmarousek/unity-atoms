@@ -51,6 +51,8 @@
      <Compile Include="Assets\Scripts\Atoms\Manager.cs" />
      <Compile Include="Assets\Scripts\Atoms\MoleculeBehavior.cs" />
      <Compile Include="Assets\Scripts\BasicUnit.cs" />
+     <Compile Include="Assets\Scripts\Gold Sheet\BombardBehavior.cs" />
+     <Compile Include="Assets\Scripts\Gold Sheet\Launcher.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/UnityCurrent/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>

@@ -124,13 +124,14 @@ public class AtomBehavior : MonoBehaviour {
 				oAtom.rb.isKinematic = true;
 				transform.parent = mol.transform;
 				oAtom.transform.parent = mol.transform;
-				valenceElectrons = 0;
-				oAtom.valenceElectrons = 0;
+				valenceElectrons -= oAtom.valenceElectrons;
+				oAtom.valenceElectrons -= valenceElectrons;
 				gameObject.tag = "Molecule";
 				other.gameObject.tag = "Molecule";
 				oneCollision = true;
 			}
 		} else if (other.gameObject.tag == "Molecule" && gameObject.tag == "Atom") {
+			oneCollision = true;
 			orb = other.gameObject.GetComponent<Rigidbody> ();
 			GameObject moleculeObject = other.transform.parent.gameObject;
 			MoleculeBehavior mb = moleculeObject.GetComponent<MoleculeBehavior> ();
@@ -143,10 +144,10 @@ public class AtomBehavior : MonoBehaviour {
 			}
 		} else if (other.gameObject.tag == "Molecule" && gameObject.tag == "Molecule" && !oneCollision) {
 			oneCollision = true;
-			for (int i = 0; i < other.transform.childCount; i++) {
-				other.transform.GetChild (i).parent = transform.parent;
-			}
-			Destroy (other.gameObject);
+			other.transform.parent.parent = transform.parent;
 		}
+
+		if (valenceElectrons == 0)
+			canBind = false;
 	}
 }
